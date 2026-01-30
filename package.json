@@ -1,0 +1,26 @@
+{
+  "name": "sim-la-web",
+  "version": "1.0.0",
+  "description": "Simulator for local anesthetic agents",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "tsc": "tsc"
+  },
+  "author": "ARA Toshiaki",
+  "license": "MIT license",
+  "devDependencies": {
+    "npm-check-updates": "^19.3.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-singlefile": "^2.3.0",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "ml-matrix": "^6.12.1",
+    "random": "^5.4.1"
+  }
+}

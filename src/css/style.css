@@ -1,0 +1,120 @@
+@media screen and (orientation: landscape){
+    div.forPortrait {
+        display: none;
+    }
+    div.forLandscape {
+        display: flex;
+    }
+}
+
+@media screen and (orientation: portrait){
+    div.forLandscape {
+        display: none;
+    }
+    div.forPortrait {
+        font-size: 60px;
+        color: #00008B;
+        margin: 200px 20px;
+    }
+}
+
+html {
+    text-align: center;
+    font-family: sans-serif;
+    background: mintcream;
+    touch-action: manipulation;
+}
+
+#left {
+    margin-left: auto;
+}
+#right {
+    margin-right: auto;
+}
+
+#lang {
+    font-size: 21px;
+    padding: 5px;
+    margin-top: 10px;
+}
+#lang > label {
+    display: block;
+    padding: 5px;
+}
+
+#buttons {
+    padding: 5px;
+}
+#buttons > label {
+    display: block;
+}
+
+#timer {
+    font-family: monospace;
+    font-size: 60px;
+    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#slider {
+    margin-top: 10px;
+    width: 300px;
+}
+
+
+.image-wrapper {
+    position: relative;
+    margin: 15px;
+    width: 497px;
+    height: 301px;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+.image-hidden {
+    opacity: 0;
+}
+
+
+#response {
+    font-size: 42px;
+}
+
+#version {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: gray;
+}
+
+
+button {
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 2px #808080 solid;
+    margin: 3px;
+}
+#start {
+    height: 60px;
+    background-color: cyan;
+}
+
+select {
+  font-size: 20px;
+}
+

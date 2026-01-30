@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>局所麻酔薬シミュレーター</title>
+    <link rel="icon" href="/assets/favicon.ico" id="favicon">
+    <link rel="stylesheet" href="src/css/style.css" />
+  </head>
+
+  <body>
+    <div id="version"></div>
+
+    <div class="forPortrait">
+      画面を横向きにして下さい <BR>
+      <BR>
+      Please change screen to landscape (horizontal)
+    </div>
+
+    <div class="forLandscape">
+      <div id="left">
+        <form name="lang" id="select-lang">
+          <select name="la">
+            <option value="en">English</option>
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="zh-TW">中文（繁体）</option>
+          </select>
+        </form>
+
+        <div id="buttons">
+          <label><button id="newexp"></button></label>
+          <label><button id="start"></button></label>
+          <label><button id="quit"></button></label>
+        </div>
+
+        <div id="timer"></div>
+        <div id="response"></div>
+      </div>
+
+      <div id="right">
+        <div>
+          <input id="slider" type="range" min="1" max="10" value="1">
+          <div id="speed_msg"></div>
+        </div>
+        <div id="image" class="image-wrapper" aria-disabled="false">
+          <img id="image-normal" class="image" alt="">
+          <img id="image-active" class="image image-hidden" alt="">
+        </div>
+      </div>
+    </div>
+
+    <script src="src/ts/main.ts" type="module"></script>
+  </body>
+
