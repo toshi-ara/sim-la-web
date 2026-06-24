@@ -13,14 +13,14 @@
   "author": "ARA Toshiaki",
   "license": "MIT license",
   "devDependencies": {
-    "npm-check-updates": "^19.3.2",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-singlefile": "^2.3.0",
-    "vitest": "^4.0.18"
+    "npm-check-updates": "^22.2.7",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.0",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^4.1.9"
   },
   "dependencies": {
-    "ml-matrix": "^6.12.1",
+    "ml-matrix": "^6.13.0",
     "random": "^5.4.1"
   }
 }
