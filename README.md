@@ -104,6 +104,10 @@ npm run build
 
 
 ## ChangeLog
+### v1.0.1 (2026-6-25)
+- update npm packages
+- change font size of response
+
 ### v1.0.0 (2026-1-30)
 - First release
 
