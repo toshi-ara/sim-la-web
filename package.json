@@ -13,7 +13,7 @@
   "author": "ARA Toshiaki",
   "license": "MIT license",
   "devDependencies": {
-    "npm-check-updates": "^22.2.7",
+    "npm-check-updates": "^22.2.8",
     "typescript": "^6.0.3",
     "vite": "^8.1.0",
     "vite-plugin-singlefile": "^2.3.3",
