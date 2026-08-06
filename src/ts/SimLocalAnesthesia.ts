@@ -214,9 +214,9 @@ export default class SimLocalAnesthesia {
 
     // push Save button
     private async clickSave(): Promise<void> {
-        const result = await getAllItems();
-        // console.log(result);
+        if (this.timer.isRunning) { return }
 
+        const result = await getAllItems();
         const workbook = new ExcelJS.Workbook();
         const worksheet = workbook.addWorksheet('Sheet1');
 
@@ -262,10 +262,12 @@ export default class SimLocalAnesthesia {
         if (this.timer.isRunning) {
             elemStart.style.background = "springgreen";
             elemNewExp.style.color = "gray";
+            elemSave.style.color = "gray";
             elemQuit.style.color = "gray";
         } else {
             elemStart.style.background = "cyan";
             elemNewExp.style.color = "black";
+            elemSave.style.color = "black";
             elemQuit.style.color = "black";
         }
     }
