@@ -107,7 +107,10 @@ npm run build
 
 
 ## ChangeLog
-### v1.1.1 (2026-8-6)
+### v1.1.3 (2026-8-6)
+- Bumped the version and rebuilt after encountering a build error in the GitHub Action
+
+### v1.1.2 (2026-8-6)
 - fix status of Save button in running
 
 ### v1.1.1 (2026-8-6)
