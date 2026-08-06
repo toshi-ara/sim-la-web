@@ -47,6 +47,9 @@
 1. You can run the experiment from the beginning with new parameter values
     by pressing the **New Exp.** button.
     - This means conducting experiments using different animals.
+1. You can save the timestamp of the click, the drug,
+    and the presence or absence of a reaction as an XLSX file
+    by pressing the **Save** button.
 1. Press the **Quit** button and then exit the program.
     - Please perform this operation to delete the parameter information
       because this remains in the browser,
@@ -104,6 +107,10 @@ npm run build
 
 
 ## ChangeLog
+### v1.1.0 (2026-8-6)
+- add new features: enable to save results as Excel file (.xlsx)
+- update npm packages
+
 ### v1.0.1 (2026-6-25)
 - update npm packages
 - change font size of response
