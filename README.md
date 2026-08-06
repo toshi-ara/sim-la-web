@@ -107,6 +107,9 @@ npm run build
 
 
 ## ChangeLog
+### v1.1.1 (2026-8-6)
+- update node version to 24 in GitHub workflows
+
 ### v1.1.0 (2026-8-6)
 - add new features: enable to save results as Excel file (.xlsx)
 - update npm packages

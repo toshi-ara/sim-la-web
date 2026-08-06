@@ -95,6 +95,9 @@ npm run build
 
 
 ## 変更履歴
+### v1.1.1 (2026-8-6)
+- GitHub workflowsにおいてnode24に更新
+
 ### v1.1.0 (2026-8-6)
 - 機能追加：結果をExcelファイル (.xlsx) として保存
 - npmパッケージの更新
