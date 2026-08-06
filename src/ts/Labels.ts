@@ -2,6 +2,8 @@ type TypeLang = { [key: string]: string };
 type TypeStr = { [key: string]: TypeLang };
 
 
+export const DrugName = ["Saline", "Pro", "Lid", "Mep", "Bup", "Lid + Adr"];
+
 export const Labels: TypeStr = {
     "start": {
         "en": "Start",
@@ -22,6 +24,11 @@ export const Labels: TypeStr = {
         "en": "New Exp.",
         "ja": "新規実験",
         "zh-TW": "新規實驗"
+    },
+    "save": {
+        "en": "Save",
+        "ja": "保存",
+        "zh-TW": "保存"
     },
     "quit": {
         "en": "Quit",

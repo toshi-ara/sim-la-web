@@ -13,6 +13,7 @@
   "author": "ARA Toshiaki",
   "license": "MIT license",
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "npm-check-updates": "^23.0.1",
     "typescript": "^7.0.2",
     "vite": "^8.2.0",
@@ -20,7 +21,12 @@
     "vitest": "^4.1.10"
   },
   "dependencies": {
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "ml-matrix": "^6.15.0",
     "random": "^5.4.1"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
   }
 }
