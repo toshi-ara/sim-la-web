@@ -107,6 +107,9 @@ npm run build
 
 
 ## ChangeLog
+### v1.1.4 (2026-8-6)
+- re-upload
+
 ### v1.1.3 (2026-8-6)
 - Bumped the version and rebuilt after encountering a build error in the GitHub Action
 
