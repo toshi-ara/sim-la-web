@@ -1,6 +1,6 @@
 import { VERSION } from "./Version";
 import * as ConstVal from "./ConstVal";
-import { Labels } from "./Labels";
+import { Labels, DrugName } from "./Labels";
 import Parameter from "./Parameter";
 import TimerStorage from "./TimerStorage";
 import {
@@ -17,6 +17,18 @@ import {
     clearStorageTimer
 } from "./Storage"
 
+import {
+    Item,
+    openDB,
+    getAllItems,
+    addItem,
+    clearDB
+} from "./indexedDB"
+
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
+
+
 import back1Png from "/assets/back1.png";
 import back2Png from "/assets/back2.png";
 
@@ -27,6 +39,7 @@ type Position = [number, number];
 let elemVersion: HTMLElement;
 let elemNewExp: HTMLInputElement;
 let elemStart: HTMLInputElement;
+let elemSave: HTMLInputElement;
 let elemQuit: HTMLInputElement;
 let elemSpeedMsg: HTMLElement;
 let elemTimer: HTMLElement;
@@ -68,7 +81,8 @@ export default class SimLocalAnesthesia {
         this.toggleButtonColor();
     }
 
-    start() {
+    async start() {
+        await openDB()
         this.displayTimer();
     }
 
@@ -92,6 +106,7 @@ export default class SimLocalAnesthesia {
     private setCallback() :void {
         elemNewExp.addEventListener("pointerdown", () => this.clickNewExp(), false);
         elemStart.addEventListener("pointerdown", () => this.clickStart(), false);
+        elemSave.addEventListener("pointerdown", () => this.clickSave(), false);
         elemQuit.addEventListener("pointerdown", () => this.clickQuit(), false);
 
         // add EventListener to droplist, slider and image
@@ -108,7 +123,7 @@ export default class SimLocalAnesthesia {
     //   get circle number
     //   get and display response
     //////////////////////////////////
-    private clickImage(e: PointerEvent): void {
+    private async clickImage(e: PointerEvent): Promise<void> {
         if (!this.timer.isRunning) { return }
         if (isLocked) { return }
 
@@ -119,9 +134,17 @@ export default class SimLocalAnesthesia {
 
         if (site < 0) { return }  // outside circles
         // get response from drug (site), time and parameters
-        const isResponse = getResponse(site,
-                                       this.timer.getMinute,
-                                       this.param.getParameter);
+
+        const time = this.timer.getMinute;
+        const isResponse = getResponse(site, time, this.param.getParameter);
+
+        const result: Item = {
+            time: time,
+            drug: DrugName[site],
+            response: isResponse ? 1 : 0
+        };
+        await addItem(result);
+
         // display response
         responseDisplay(isResponse, this.lang, ConstVal.ACTIVE_DURATION);
     }
@@ -151,6 +174,7 @@ export default class SimLocalAnesthesia {
         }
         elemStart.textContent = Labels[id][this.lang];
         elemNewExp.textContent = Labels["newexp"][this.lang];
+        elemSave.textContent = Labels["save"][this.lang];
         elemQuit.textContent = Labels["quit"][this.lang];
         this.toggleButtonColor();
 
@@ -162,7 +186,7 @@ export default class SimLocalAnesthesia {
     // buttons
     //////////////////////////////////
     // push New Experiment button
-    private clickNewExp(): void {
+    private async clickNewExp(): Promise<void> {
         if (this.timer.isRunning) { return }
         // in pause
         const check = window.confirm(Labels["msg_newexp"][this.lang]);
@@ -173,6 +197,7 @@ export default class SimLocalAnesthesia {
             this.changeSpeed();
             this.setLang()
             setStorageSpeed(elemSlider.value);
+            await clearDB();
         }
     }
 
@@ -187,8 +212,38 @@ export default class SimLocalAnesthesia {
         this.toggleButtonColor();
     }
 
+    // push Save button
+    private async clickSave(): Promise<void> {
+        const result = await getAllItems();
+        // console.log(result);
+
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Sheet1');
+
+        // header
+        worksheet.getCell(1, 1).value = "Time";
+        worksheet.getCell(1, 2).value = "Drug";
+        worksheet.getCell(1, 3).value = "Response";
+
+        // contents
+        for (let i: number = 0; i < result.length; i++) {
+            worksheet.getCell(i + 2, 1).value = result[i].time;
+            worksheet.getCell(i + 2, 1).numFmt = '0.00';
+            worksheet.getCell(i + 2, 2).value = result[i].drug;
+            worksheet.getCell(i + 2, 3).value = result[i].response;
+        }
+
+        // Output
+        // generate Blob and download
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], {
+            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        });
+        saveAs(blob, `SimLA_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    }
+
     // push Quit button
-    private clickQuit(): void {
+    private async clickQuit(): Promise<void> {
         if (this.timer.isRunning) { return }
         if (!window.confirm(Labels["msg_quit"][this.lang])) { return }
 
@@ -199,6 +254,7 @@ export default class SimLocalAnesthesia {
         this.changeSpeed();
         clearStorage();
         clearStorageTimer();
+        await clearDB();
     }
 
     // change buttons status (color)
@@ -247,6 +303,7 @@ function initialize(): void {
 
     elemNewExp = <HTMLInputElement>document.getElementById("newexp");
     elemStart = <HTMLInputElement>document.getElementById("start");
+    elemSave = <HTMLInputElement>document.getElementById("save");
     elemQuit = <HTMLInputElement>document.getElementById("quit");
 
     elemSpeedMsg = <HTMLElement>document.getElementById("speed_msg");
