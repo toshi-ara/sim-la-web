@@ -107,6 +107,9 @@ npm run build
 
 
 ## ChangeLog
+### v1.1.5 (2026-8-6)
+- re-upload
+
 ### v1.1.4 (2026-8-6)
 - re-upload
 
