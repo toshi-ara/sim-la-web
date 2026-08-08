@@ -107,6 +107,9 @@ npm run build
 
 
 ## ChangeLog
+### v1.2.0 (2026-8-9)
+- support for GitHub CLI
+
 ### v1.1.6 (2026-8-7)
 - re-upload
 
