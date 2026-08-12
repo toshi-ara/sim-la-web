@@ -107,6 +107,9 @@ npm run build
 
 
 ## ChangeLog
+### v1.2.1 (2026-8-12)
+- use hucre instead of exceljs
+
 ### v1.2.0 (2026-8-9)
 - support for GitHub CLI
 

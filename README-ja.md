@@ -95,6 +95,9 @@ npm run build
 
 
 ## 変更履歴
+### v1.2.1 (2026-8-12)
+- exceljsの代わりにhucreを使用
+
 ### v1.2.0 (2026-8-9)
 - GitHub CLIに対応
 
