@@ -25,9 +25,8 @@ import {
     clearDB
 } from "./indexedDB"
 
-import ExcelJS from "exceljs";
-import { saveAs } from "file-saver";
 
+import { writeXlsx } from "hucre"
 
 import back1Png from "/assets/back1.png";
 import back2Png from "/assets/back2.png";
@@ -217,29 +216,35 @@ export default class SimLocalAnesthesia {
         if (this.timer.isRunning) { return }
 
         const result = await getAllItems();
-        const workbook = new ExcelJS.Workbook();
-        const worksheet = workbook.addWorksheet('Sheet1');
-
-        // header
-        worksheet.getCell(1, 1).value = "Time";
-        worksheet.getCell(1, 2).value = "Drug";
-        worksheet.getCell(1, 3).value = "Response";
-
-        // contents
-        for (let i: number = 0; i < result.length; i++) {
-            worksheet.getCell(i + 2, 1).value = result[i].time;
-            worksheet.getCell(i + 2, 1).numFmt = '0.00';
-            worksheet.getCell(i + 2, 2).value = result[i].drug;
-            worksheet.getCell(i + 2, 3).value = result[i].response;
-        }
-
-        // Output
-        // generate Blob and download
-        const buffer = await workbook.xlsx.writeBuffer();
-        const blob = new Blob([buffer], {
-            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        const buffer = await writeXlsx({
+            sheets: [
+                {
+                    name: "Result",
+                    columns: [
+                        { header: "Time", key: "time", numFmt: "0.00" },
+                        { header: "Drug", key: "drug" },
+                        { header: "Response", key: "response" },
+                    ],
+                    data: result,
+                },
+            ],
         });
-        saveAs(blob, `SimLA_${new Date().toISOString().slice(0, 10)}.xlsx`);
+
+        // Download by browser
+        const blob = new Blob([buffer], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `SimLA_${new Date().toISOString().slice(0, 10)}.xlsx`;
+        document.body.appendChild(a);
+        a.click();
+
+        // post operation
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     }
 
     // push Quit button
