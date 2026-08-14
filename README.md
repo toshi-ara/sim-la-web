@@ -9,7 +9,7 @@
 
 
 ## How to install and run
-- Access [this page](https://toshi-ara.github.io/sim-la-web/).
+- Access [this page](https://toshiakiara.github.io/sim-la-web/).
 
 
 ## About training procedures
