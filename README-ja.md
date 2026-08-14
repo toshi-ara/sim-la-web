@@ -7,7 +7,7 @@
 
 
 ## 実行方法について
-- [このページ](https://toshi-ara.github.io/sim-la-web/)
+- [このページ](https://toshiakiara.github.io/sim-la-web/)
   にアクセスして下さい
 
 ## 実習手順について
