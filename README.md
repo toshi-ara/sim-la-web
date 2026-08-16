@@ -107,6 +107,9 @@ npm run build
 
 
 ## ChangeLog
+### v1.3.1 (2026-8-16)
+- add icons for PWA
+
 ### v1.3.0 (2026-8-13)
 - support PWA
 
