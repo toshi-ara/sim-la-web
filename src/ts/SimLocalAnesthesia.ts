@@ -1,6 +1,6 @@
 import { VERSION } from "./Version";
 import * as ConstVal from "./ConstVal";
-import { Labels, DrugName } from "./Labels";
+import { DrugName } from "./Labels";
 import Parameter from "./Parameter";
 import TimerStorage from "./TimerStorage";
 import {
@@ -24,6 +24,8 @@ import {
     addItem,
     clearDB
 } from "./indexedDB"
+
+import i18n from "./i18n";
 
 
 import { writeXlsx } from "hucre"
@@ -158,23 +160,25 @@ export default class SimLocalAnesthesia {
     }
 
     // change labels
-    private setLang(): void {
+    private async setLang(): Promise<void> {
+        await i18n.changeLanguage(this.lang);
+
         // start/restart/pause button
         // let lab;
         let id: string;
         if (this.timer.isRunning) {
-            id = "pause";
+            id = "Pause";
         } else {
             if (this.timer.getTime == 0) {
-                id = "start";
+                id = "Start";
             } else {
-                id = "restart";
+                id = "Restart";
             }
         }
-        elemStart.textContent = Labels[id][this.lang];
-        elemNewExp.textContent = Labels["newexp"][this.lang];
-        elemSave.textContent = Labels["save"][this.lang];
-        elemQuit.textContent = Labels["quit"][this.lang];
+        elemStart.textContent = i18n.t(id);
+        elemNewExp.textContent = i18n.t("NewExp");
+        elemSave.textContent = i18n.t("Save");
+        elemQuit.textContent = i18n.t("Quit");
         this.toggleButtonColor();
 
         // slider
@@ -188,7 +192,7 @@ export default class SimLocalAnesthesia {
     private async clickNewExp(): Promise<void> {
         if (this.timer.isRunning) { return }
         // in pause
-        const check = window.confirm(Labels["msg_newexp"][this.lang]);
+        const check = window.confirm(i18n.t("dialogMsgNewExp"));
         if (check) {
             this.timer.actionNewExp();
             this.param.setInitParameter();
@@ -249,11 +253,10 @@ export default class SimLocalAnesthesia {
 
     // push Quit button
     private async clickQuit(): Promise<void> {
-        if (this.timer.isRunning) { return }
-        if (!window.confirm(Labels["msg_quit"][this.lang])) { return }
+        if (this.timer.isRunning) { return };
+        if (!window.confirm(i18n.t("dialogMsgQuit"))) { return };
 
-        window.alert(Labels["msg_close"][this.lang]);
-        elemStart.textContent = Labels["start"][this.lang];
+        elemStart.textContent = i18n.t("Start");
         this.timer.actionQuit();
         elemSlider.value = "1";
         this.changeSpeed();
@@ -288,7 +291,7 @@ export default class SimLocalAnesthesia {
     }
 
     private printSpeed(speed: string): void {
-        elemSpeedMsg.textContent = speed + Labels["speed"][this.lang];
+        elemSpeedMsg.textContent = speed + i18n.t("Speed");
     }
 
     //////////////////////////////////
@@ -375,7 +378,7 @@ function responseDisplay(isResponse: boolean,
         elemImageNormal.classList.add("image-hidden");
         elemImageActive.classList.remove("image-hidden");
 
-        elemResponse.textContent = Labels["with_response"][lang];
+        elemResponse.textContent = i18n.t("Respond");
         elemResponse.style.color = "red";
         elemTimer.style.color = "red";
 
@@ -392,7 +395,7 @@ function responseDisplay(isResponse: boolean,
         }, duration);
     } else {
         // effects without response
-        elemResponse.textContent = Labels["without_response"][lang];
+        elemResponse.textContent = i18n.t("NotRespond");
         elemResponse.style.color = "black";
         setTimeout(() => {
             elemResponse.textContent = "";

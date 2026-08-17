@@ -1,0 +1,14 @@
+{
+    "NewExp": "新規實驗",
+    "Pause": "一時停止",
+    "Quit": "終了",
+    "Restart": "再開",
+    "Save": "保存",
+    "Start": "開始",
+    "Speed": "倍速",
+    "Respond": "有反應",
+    "NotRespond": "沒反應",
+    "dialogMsgNewExp": "要開始新的實驗嗎?'",
+    "dialogMsgQuit": "確定要退出嗎?",
+    "Confirm": "確認"
+}

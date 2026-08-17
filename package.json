@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "hucre": "^1.0.0",
+    "i18next": "^26.3.6",
     "ml-matrix": "^6.15.0",
     "random": "^5.4.1"
   }
