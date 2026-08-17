@@ -107,6 +107,10 @@ npm run build
 
 
 ## ChangeLog
+### v1.3.2 (2026-8-18)
+- improve multi-language
+- update npm packages
+
 ### v1.3.1 (2026-8-16)
 - add icons for PWA
 
