@@ -1,0 +1,14 @@
+{
+    "NewExp": "New Exp",
+    "Pause": "Pause",
+    "Quit": "Quit",
+    "Restart": "Restart",
+    "Save": "Save",
+    "Start": "Start",
+    "Speed": "Speed",
+    "Respond": "Respond",
+    "NotRespond": "Not Respond",
+    "dialogMsgNewExp": "Do you want to start a new experiment?",
+    "dialogMsgQuit": "Do you want to quit?",
+    "Confirm": "Confirm"
+}

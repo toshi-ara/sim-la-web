@@ -1,0 +1,14 @@
+{
+    "NewExp": "새로운 실험",
+    "Pause": "일시적인 중지",
+    "Quit": "사람을 떠나다",
+    "Restart": "재시작",
+    "Save": "구하다",
+    "Start": "시작",
+    "Speed": "속도",
+    "Respond": "반응 있음",
+    "NotRespond": "반응 없음",
+    "dialogMsgNewExp": "새로운 실험을 시작해 보시겠어요?",
+    "dialogMsgQuit": "그만두고 싶으세요?",
+    "Confirm": "확인하다"
+}

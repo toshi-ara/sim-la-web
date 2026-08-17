@@ -1,0 +1,14 @@
+{
+    "NewExp": "新規実験",
+    "Pause": "一時停止",
+    "Quit": "終了",
+    "Restart": "再開",
+    "Save": "保存",
+    "Start": "開始",
+    "Speed": "速度",
+    "Respond": "反応あり",
+    "NotRespond": "反応なし",
+    "dialogMsgNewExp": "新規実験を行いますか?",
+    "dialogMsgQuit": "終了しますか?",
+    "Confirm": "確認"
+}
